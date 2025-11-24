@@ -3,7 +3,7 @@ package org.example;
 import java.util.Scanner;
 
 public class main {
-
+/** main class @author JoseRodriguez*/
     public static void main(String[] args) {
 
         Repo_File Repo = new Repo_File();
@@ -11,49 +11,29 @@ public class main {
         boolean salir = false;
 
         while (!salir) {
-            System.out.println(Constantes.TITULO_MENU);
-            System.out.println(Constantes.op_listar);
-            System.out.println(Constantes.op_buscarxD);
-            System.out.println(Constantes.op_buscarxN);
-            System.out.println(Constantes.op_eliminar);
-            System.out.println(Constantes.op_añadir);
-            System.out.println(Constantes.op_salir);
+            menu();
 
             String Opcion = Sc.nextLine();
 
             switch (Opcion) {
                 case "1":
-                    for (Cumple_Agenda c : Repo.get_lista()) {
-                        System.out.println(c.getNombre());
-                    }
+                    case1(Repo);
                     break;
 
                 case "2":
-                    System.out.print("Día: ");
-                    for (Cumple_Agenda c : Repo.buscarDia(Integer.parseInt(Sc.nextLine()))) {
-                        System.out.println(c.getNombre());
-                    }
+                    case2(Repo, Sc);
                     break;
 
                 case "3":
-                    System.out.print("Nombre: ");
-                    Cumple_Agenda c = Repo.buscarNombre(Sc.nextLine());
-                    if (c != null) System.out.println(c.getNombre());
+                    case3(Repo, Sc);
                     break;
 
                 case "4":
-                    System.out.print("Nombre: ");
-                    String N = Sc.nextLine();
-                    System.out.print("Día: ");
-                    int D = Integer.parseInt(Sc.nextLine());
-                    System.out.print("Mes: ");
-                    int M = Integer.parseInt(Sc.nextLine());
-                    Repo.add_cumple(new Cumple_Agenda(N, D, M));
+                    case4(Sc, Repo);
                     break;
 
                 case "5":
-                    System.out.print("Eliminar nombre: ");
-                    Repo.eliminarNombre(Sc.nextLine());
+                    extracted(Repo, Sc);
                     break;
 
                 case "6":
@@ -61,5 +41,54 @@ public class main {
                     break;
             }
         }
+    }
+
+    private static void extracted(Repo_File Repo, Scanner Sc) {
+        System.out.print(Constantes.eliminar_nombre);
+        Repo.eliminarNombre(Sc.nextLine());
+        /** elimina los nombres*/
+    }
+
+    private static void case4(Scanner Sc, Repo_File Repo) {
+        System.out.print(Constantes.introduzca_nombre);
+        String N = Sc.nextLine();
+        System.out.print(Constantes.introduzca_dia);
+        int D = Integer.parseInt(Sc.nextLine());
+        System.out.print(Constantes.introduzca_mes);
+        int M = Integer.parseInt(Sc.nextLine());
+        Repo.add_cumple(new Cumple_Agenda(N, D, M));
+        /** registra mes nombre y dia*/
+    }
+
+    private static void case3(Repo_File Repo, Scanner Sc) {
+        System.out.print(Constantes.introduzca_nombre);
+        Cumple_Agenda c = Repo.buscarNombre(Sc.nextLine());
+        if (c != null) System.out.println(c.getNombre());
+        /** regustra nombre*/
+    }
+
+    private static void case2(Repo_File Repo, Scanner Sc) {
+        System.out.print(Constantes.introduzca_dia);
+        for (Cumple_Agenda c : Repo.buscarDia(Integer.parseInt(Sc.nextLine()))) {
+            System.out.println(c.getNombre());
+            /** regustra dia*/
+        }
+    }
+
+    private static void case1(Repo_File Repo) {
+        for (Cumple_Agenda c : Repo.get_lista()) {
+            System.out.println(c.getNombre());
+        }
+    }
+
+    private static void menu() {
+        System.out.println(Constantes.TITULO_MENU);
+        System.out.println(Constantes.op_listar);
+        System.out.println(Constantes.op_buscarxD);
+        System.out.println(Constantes.op_buscarxN);
+        System.out.println(Constantes.op_eliminar);
+        System.out.println(Constantes.op_añadir);
+        System.out.println(Constantes.op_salir);
+        /** imprime el menu*/
     }
 }
