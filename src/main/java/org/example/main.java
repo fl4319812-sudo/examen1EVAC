@@ -11,13 +11,13 @@ public class main {
         boolean salir = false;
 
         while (!salir) {
-            System.out.println("\n=== AGENDA ===");
-            System.out.println("1. Listar");
-            System.out.println("2. Buscar por día");
-            System.out.println("3. Buscar por nombre");
-            System.out.println("4. Añadir");
-            System.out.println("5. Eliminar");
-            System.out.println("6. Salir");
+            System.out.println(Constantes.TITULO_MENU);
+            System.out.println(Constantes.op_listar);
+            System.out.println(Constantes.op_buscarxD);
+            System.out.println(Constantes.op_buscarxN);
+            System.out.println(Constantes.op_eliminar);
+            System.out.println(Constantes.op_añadir);
+            System.out.println(Constantes.op_salir);
 
             String Opcion = Sc.nextLine();
 
@@ -29,30 +29,30 @@ public class main {
                     break;
 
                 case "2":
-                    System.out.print("Día: ");
+                    System.out.print(Constantes.introduzca_dia);
                     for (Cumple_Agenda c : Repo.buscarDia(Integer.parseInt(Sc.nextLine()))) {
                         System.out.println(c.getNombre());
                     }
                     break;
 
                 case "3":
-                    System.out.print("Nombre: ");
+                    System.out.print(Constantes.introduzca_nombre);
                     Cumple_Agenda c = Repo.buscarNombre(Sc.nextLine());
                     if (c != null) System.out.println(c.getNombre());
                     break;
 
                 case "4":
-                    System.out.print("Nombre: ");
+                    System.out.print(Constantes.introduzca_nombre);
                     String N = Sc.nextLine();
-                    System.out.print("Día: ");
+                    System.out.print(Constantes.introduzca_dia);
                     int D = Integer.parseInt(Sc.nextLine());
-                    System.out.print("Mes: ");
+                    System.out.print(Constantes.introduzca_mes);
                     int M = Integer.parseInt(Sc.nextLine());
                     Repo.add_cumple(new Cumple_Agenda(N, D, M));
                     break;
 
                 case "5":
-                    System.out.print("Eliminar nombre: ");
+                    System.out.print(Constantes.eliminar_nombre);
                     Repo.eliminarNombre(Sc.nextLine());
                     break;
 
