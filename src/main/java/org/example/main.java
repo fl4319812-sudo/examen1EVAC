@@ -29,30 +29,30 @@ public class main {
                     break;
 
                 case "2":
-                    System.out.print(Constantes.introduzca_dia);
+                    System.out.print("Día: ");
                     for (Cumple_Agenda c : Repo.buscarDia(Integer.parseInt(Sc.nextLine()))) {
                         System.out.println(c.getNombre());
                     }
                     break;
 
                 case "3":
-                    System.out.print(Constantes.introduzca_nombre);
+                    System.out.print("Nombre: ");
                     Cumple_Agenda c = Repo.buscarNombre(Sc.nextLine());
                     if (c != null) System.out.println(c.getNombre());
                     break;
 
                 case "4":
-                    System.out.print(Constantes.introduzca_nombre);
+                    System.out.print("Nombre: ");
                     String N = Sc.nextLine();
-                    System.out.print(Constantes.introduzca_dia);
+                    System.out.print("Día: ");
                     int D = Integer.parseInt(Sc.nextLine());
-                    System.out.print(Constantes.introduzca_mes);
+                    System.out.print("Mes: ");
                     int M = Integer.parseInt(Sc.nextLine());
                     Repo.add_cumple(new Cumple_Agenda(N, D, M));
                     break;
 
                 case "5":
-                    System.out.print(Constantes.eliminar_nombre);
+                    System.out.print("Eliminar nombre: ");
                     Repo.eliminarNombre(Sc.nextLine());
                     break;
 
